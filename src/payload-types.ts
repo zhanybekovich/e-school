@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    teachers: Teacher;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    teachers: TeachersSelect<false> | TeachersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -124,8 +126,6 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   role: 'student' | 'teacher' | 'admin' | 'manager';
-  firstName: string;
-  lastName: string;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -166,6 +166,24 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teachers".
+ */
+export interface Teacher {
+  id: number;
+  user?: (number | null) | User;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  phone: string;
+  hireDate: string;
+  terminationDate?: string | null;
+  status: 'active' | 'terminated' | 'vacation';
+  salary?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -195,6 +213,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'teachers';
+        value: number | Teacher;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -244,8 +266,6 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   role?: T;
-  firstName?: T;
-  lastName?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -280,6 +300,23 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teachers_select".
+ */
+export interface TeachersSelect<T extends boolean = true> {
+  user?: T;
+  firstName?: T;
+  lastName?: T;
+  fullName?: T;
+  phone?: T;
+  hireDate?: T;
+  terminationDate?: T;
+  status?: T;
+  salary?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
