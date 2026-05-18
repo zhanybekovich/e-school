@@ -19,15 +19,5 @@ export const Users: CollectionConfig = {
         { label: 'Manager', value: 'manager' },
       ],
     },
-    {
-      type: 'text',
-      name: 'firstName',
-      required: true,
-    },
-    {
-      type: 'text',
-      name: 'lastName',
-      required: true,
-    },
   ],
 }
