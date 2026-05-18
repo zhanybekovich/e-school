@@ -7,11 +7,17 @@ export const Teachers: CollectionConfig = {
     useAsTitle: 'fullName',
   },
 
+  labels: {
+    singular: 'Преподаватель',
+    plural: 'Преподаватели',
+  },
+
   fields: [
     {
       name: 'user',
       type: 'relationship',
       relationTo: 'users',
+      label: 'Пользователь',
 
       filterOptions: {
         role: {
@@ -24,11 +30,13 @@ export const Teachers: CollectionConfig = {
       name: 'firstName',
       type: 'text',
       required: true,
+      label: 'Имя',
     },
     {
       name: 'lastName',
       type: 'text',
       required: true,
+      label: 'Фамилия',
     },
     {
       name: 'fullName',
@@ -37,35 +45,41 @@ export const Teachers: CollectionConfig = {
       admin: {
         readOnly: true,
       },
+      label: 'Полное имя',
     },
     {
       name: 'phone',
       type: 'text',
       required: true,
+      label: 'Телефон',
     },
     {
       name: 'hireDate',
       type: 'date',
       required: true,
+      label: 'Дата приема',
     },
     {
       name: 'terminationDate',
       type: 'date',
       required: false,
+      label: 'Дата увольнения',
     },
     {
       name: 'status',
       type: 'select',
       options: [
-        { label: 'Active', value: 'active' },
-        { label: 'Terminated', value: 'terminated' },
-        { label: 'Vacation', value: 'vacation' },
+        { label: 'Активный', value: 'active' },
+        { label: 'Уволен', value: 'terminated' },
+        { label: 'В отпуске', value: 'vacation' },
       ],
       required: true,
+      label: 'Статус',
     },
     {
       name: 'salary',
       type: 'number',
+      label: 'Зарплата',
     },
   ],
   hooks: {

@@ -5,18 +5,23 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
   },
+  labels: {
+    singular: 'Пользователь',
+    plural: 'Пользователи',
+  },
   auth: true,
   fields: [
     {
       type: 'select',
       name: 'role',
       required: true,
+      label: 'Роль',
       defaultValue: 'student',
       options: [
-        { label: 'Student', value: 'student' },
-        { label: 'Teacher', value: 'teacher' },
-        { label: 'Admin', value: 'admin' },
-        { label: 'Manager', value: 'manager' },
+        { label: 'Студент', value: 'student' },
+        { label: 'Преподаватель', value: 'teacher' },
+        { label: 'Админ', value: 'admin' },
+        { label: 'Менеджер', value: 'manager' },
       ],
     },
   ],
