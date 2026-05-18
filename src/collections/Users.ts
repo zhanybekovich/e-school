@@ -10,6 +10,8 @@ export const Users: CollectionConfig = {
     {
       type: 'select',
       name: 'role',
+      required: true,
+      defaultValue: 'student',
       options: [
         { label: 'Student', value: 'student' },
         { label: 'Teacher', value: 'teacher' },
